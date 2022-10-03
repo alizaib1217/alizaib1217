@@ -1,0 +1,2 @@
+# alizaib
+A meticulous IT enthusiast with 6+ years of involvement and commitment to conveying the most exciting and challenging IT projects. I'm focused on flawlessness at whatever expense, and this has come about an ideal history of conveyance to date.  I don't think twice about creation worth, and I am frequently ready to fill in non-specialized liability jobs that can be an oversight in transient project worker groups.I have worked for the largest Fortune 500 monsters (RIOT Games - lol, Goldman Sachs, Australia Broadband) and the smallest tech start ups.
