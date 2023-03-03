@@ -2,11 +2,11 @@
 <h3 align="center">A passionate Full stack developer from Germany</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=alizaib1217&label=Profile%20views&color=0e75b6&style=flat" alt="alizaib1217" /> </p>
-
+<a href="https://app.daily.dev/alizaib1217"><img src="https://api.daily.dev/devcards/c8f27d4d466b40ebb445ccdb45b6e56b.png?r=p80" width="400" alt="Ali Zaib's Dev Card"/></a>
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=alizaib1217" alt="alizaib1217" /></a> </p>
 
 <p align="left"> <a href="https://twitter.com/alizaib1217" target="blank"><img src="https://img.shields.io/twitter/follow/alizaib1217?logo=twitter&style=for-the-badge" alt="alizaib1217" /></a> </p>
-<a href="https://app.daily.dev/alizaib1217"><img src="https://api.daily.dev/devcards/c8f27d4d466b40ebb445ccdb45b6e56b.png?r=p80" width="400" alt="Ali Zaib's Dev Card"/></a>
+
 
 - 🔭 I’m currently working on [BarterUnit](https://barterunit.com/)
 
