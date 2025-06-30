@@ -8,9 +8,9 @@
 <p align="left"> <a href="https://twitter.com/alizaib1217" target="blank"><img src="https://img.shields.io/twitter/follow/alizaib1217?logo=twitter&style=for-the-badge" alt="alizaib1217" /></a> </p>
 
 
-- 🔭 I’m currently working on [BarterUnit](https://barterunit.com/)
+- 🔭 I’m currently working on [Chemotion](https://chemotion.net/)
 
-- 🌱 I’m currently learning **Networking, Web Engineering, Cloud,**
+- 🌱 I’m currently learning **Networking, Web Engineering, Cloud, Ruby**
 
 - 🤝 I’m looking for help with **Business Development/Sales**
 
