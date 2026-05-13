@@ -9,17 +9,17 @@
 
 - 🔭 I’m currently working on [Chemotion](https://chemotion.net/)
 
-- 🌱 I’m currently learning **Networking, Web Engineering, Cloud, Ruby**
+- 🌱 I’m currently learning **Distributed Systems, Web Engineering, Cloud, Ruby**
 
 - 🤝 I’m looking for help with **Business Development/Sales**
 
-- 👨‍💻 All of my projects are available at [https://alizaib.info/](https://alizaib.info/)
+- 👨‍💻 All of my projects are available at [https://alizaib1217.github.io/alizaib1217/](https://alizaib1217.github.io/alizaib1217/)
 
 - 💬 Ask me about **react, reactnative, node, express, backend/frontend solutions**
 
-- 📫 How to reach me **contact@alizaib.info**
+- 📫 How to reach me **alizaib1217@gmail.com**
 
-- 📄 Know about my experiences [https://alizaib.info/](https://alizaib.info/)
+- 📄 Know about my experiences [https://alizaib1217.github.io/alizaib1217/](https://alizaib1217.github.io/alizaib1217/)
 
 - ⚡ Fun fact **I am a foody.**
 
