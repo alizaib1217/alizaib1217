@@ -85,6 +85,65 @@
     .topbar nav a:hover { color: var(--accent); }
     @media (max-width: 720px) { .topbar nav { display: none; } }
 
+    /* ── Theme controls ──────────────────────────────── */
+    .theme-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ctrl-btn {
+      appearance: none;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+    .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .palette-wrap { position: relative; }
+    .palette-pop {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      gap: 8px;
+      flex-direction: column;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      min-width: 160px;
+    }
+    .palette-pop.open { display: flex; }
+    .palette-pop .pop-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--fg-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 4px 6px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .swatches { display: flex; gap: 6px; padding: 4px 2px; }
+    .swatch {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+    .swatch:hover { transform: scale(1.2); }
+    .swatch.active { border-color: var(--fg); transform: scale(1.15); }
+
     /* ── Hero ────────────────────────────────────────── */
     .hero { margin-bottom: 120px; }
     .hero .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 28px; text-transform: uppercase; }
@@ -418,6 +477,16 @@
         <a href="#education">education</a>
         <a href="#contact">contact</a>
       </nav>
+      <div class="theme-controls">
+        <button class="ctrl-btn" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">🌙</button>
+        <div class="palette-wrap">
+          <button class="ctrl-btn" id="palette-btn" title="Pick accent colour" aria-label="Accent colour">◐</button>
+          <div class="palette-pop" id="palette-pop">
+            <span class="pop-label">// accent</span>
+            <div class="swatches" id="swatches"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Hero -->
@@ -659,6 +728,76 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      const ACCENTS = [
+        { hex: '#6ee7b7', label: 'Mint'    },
+        { hex: '#7dd3fc', label: 'Sky'     },
+        { hex: '#f5b06b', label: 'Amber'   },
+        { hex: '#fca5a5', label: 'Rose'    },
+        { hex: '#c4b5fd', label: 'Violet'  },
+      ];
+
+      const root   = document.documentElement;
+      const body   = document.body;
+      const toggle = document.getElementById('theme-toggle');
+      const palBtn = document.getElementById('palette-btn');
+      const palPop = document.getElementById('palette-pop');
+      const swatchWrap = document.getElementById('swatches');
+
+      // ── Persist & restore ──────────────────────────────
+      let theme  = localStorage.getItem('theme')  || 'dark';
+      let accent = localStorage.getItem('accent') || '#6ee7b7';
+
+      function applyTheme(t) {
+        theme = t;
+        root.setAttribute('data-theme', t);
+        toggle.textContent = t === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('theme', t);
+      }
+
+      function applyAccent(hex) {
+        accent = hex;
+        root.style.setProperty('--accent', hex);
+        root.style.setProperty('--accent-soft', hex + '1f');
+        localStorage.setItem('accent', hex);
+        swatchWrap.querySelectorAll('.swatch').forEach(s => {
+          s.classList.toggle('active', s.dataset.hex === hex);
+        });
+      }
+
+      // ── Build swatches ─────────────────────────────────
+      ACCENTS.forEach(({ hex, label }) => {
+        const s = document.createElement('button');
+        s.className = 'swatch';
+        s.dataset.hex = hex;
+        s.title = label;
+        s.style.background = hex;
+        s.setAttribute('aria-label', label + ' accent');
+        s.addEventListener('click', () => { applyAccent(hex); });
+        swatchWrap.appendChild(s);
+      });
+
+      // ── Init ───────────────────────────────────────────
+      applyTheme(theme);
+      applyAccent(accent);
+
+      // ── Toggle theme ───────────────────────────────────
+      toggle.addEventListener('click', () => {
+        applyTheme(theme === 'dark' ? 'light' : 'dark');
+      });
+
+      // ── Palette popover ────────────────────────────────
+      palBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        palPop.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!palPop.contains(e.target) && e.target !== palBtn) {
+          palPop.classList.remove('open');
+        }
+      });
+    })();
   </script>
 
   <script type="text/babel" src="tweaks-panel.jsx"></script>
