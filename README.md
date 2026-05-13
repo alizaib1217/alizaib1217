@@ -1,72 +1,84 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=6ee7b7&height=200&section=header&text=Ali%20Zaib&fontSize=80&fontColor=0e1116&animation=fadeIn&fontAlignY=38&desc=Full%20Stack%20Developer%20·%20Leipzig,%20DE&descAlignY=55&descSize=18&descColor=0e1116" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0e1116,6ee7b7&height=220&section=header&text=Ali%20Zaib&fontSize=80&fontColor=6ee7b7&animation=fadeIn&fontAlignY=38&desc=Full%20Stack%20Developer%20·%20Leipzig,%20Germany&descAlignY=56&descSize=18&descColor=9aa4b2" />
 
-<img src="https://komarev.com/ghpvc/?username=alizaib1217&label=Profile+views&color=6ee7b7&style=flat-square" alt="profile views" />
-&nbsp;
-<a href="https://alizaib1217.github.io/alizaib1217/"><img src="https://img.shields.io/badge/Portfolio-6ee7b7?style=flat-square&logo=github&logoColor=0e1116" /></a>
-&nbsp;
-<a href="https://linkedin.com/in/alizaib1217"><img src="https://img.shields.io/badge/LinkedIn-0a66c2?style=flat-square&logo=linkedin&logoColor=white" /></a>
-&nbsp;
-<a href="mailto:alizaib1217@gmail.com"><img src="https://img.shields.io/badge/Email-ea4335?style=flat-square&logo=gmail&logoColor=white" /></a>
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&pause=1000&color=6EE7B7&center=true&vCenter=true&width=500&lines=Full+Stack+Developer+%F0%9F%9A%80;React+%26+Node.js+Engineer;5%2B+years+shipping+web+products;MSc+Web+Engineering+%C2%B7+Chemnitz+Uni;Open+to+opportunities+%F0%9F%8C%8D" alt="Typing SVG" />
+</a>
+
+<br/>
+
+<a href="https://alizaib1217.github.io/alizaib1217/"><img src="https://img.shields.io/badge/Portfolio-6ee7b7?style=for-the-badge&logo=github&logoColor=0e1116" /></a>
+<a href="https://linkedin.com/in/alizaib1217"><img src="https://img.shields.io/badge/LinkedIn-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="mailto:alizaib1217@gmail.com"><img src="https://img.shields.io/badge/Gmail-ea4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+<a href="https://stackoverflow.com/users/10904968"><img src="https://img.shields.io/badge/Stack_Overflow-f58025?style=for-the-badge&logo=stackoverflow&logoColor=white" /></a>
+<img src="https://komarev.com/ghpvc/?username=alizaib1217&style=for-the-badge&color=6ee7b7&label=PROFILE+VIEWS" />
 
 </div>
 
 ---
 
 ```ts
-const ali = {
-  location : "Leipzig, Germany 🇩🇪",
+const ali: Developer = {
+  location  : "Leipzig, Germany 🇩🇪",
   education : "MSc Web Engineering · Chemnitz University of Technology",
-  work      : "Full Stack Developer · Open to opportunities",
-  stack     : ["React", "Node.js", "TypeScript", "AWS", "Docker"],
-  languages : { English: "native", Urdu: "native", Pashto: "native", German: "B1" },
+  role      : "Full Stack Developer · Available for opportunities",
+  stack     : ["React", "React Native", "TypeScript", "Node.js", "AWS", "Docker"],
+  languages : { English: "★★★★★", Urdu: "★★★★★", Pashto: "★★★★★", German: "★★★☆☆" },
+  interests : ["Distributed Systems", "Cloud Architecture", "Clean UX", "German food 🥨"],
   contact   : "alizaib1217@gmail.com",
 };
 ```
 
 ---
 
-### // frontend
+<h3 align="center">// tech stack</h3>
 
-![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb)
-![React Native](https://img.shields.io/badge/React_Native-20232a?style=flat-square&logo=react&logoColor=61dafb)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-f7df1e?style=flat-square&logo=javascript&logoColor=0e1116)
-![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3/SCSS-1572b6?style=flat-square&logo=css3&logoColor=white)
-![WebRTC](https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white)
-
-### // backend
-
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776ab?style=flat-square&logo=python&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-777bb4?style=flat-square&logo=php&logoColor=white)
-![GraphQL](https://img.shields.io/badge/GraphQL-e10098?style=flat-square&logo=graphql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47a248?style=flat-square&logo=mongodb&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479a1?style=flat-square&logo=mysql&logoColor=white)
-
-### // devops & cloud
-
-![AWS](https://img.shields.io/badge/AWS-232f3e?style=flat-square&logo=amazon-aws&logoColor=ff9900)
-![Docker](https://img.shields.io/badge/Docker-2496ed?style=flat-square&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-f05032?style=flat-square&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
-![GitLab](https://img.shields.io/badge/GitLab-fc6d26?style=flat-square&logo=gitlab&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-6ee7b7?style=flat-square&logo=github-actions&logoColor=0e1116)
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=react,ts,js,nodejs,python,php,html,css&perline=8" />
+  <br/>
+  <img src="https://skillicons.dev/icons?i=mongodb,mysql,graphql,aws,docker,git,github,gitlab&perline=8" />
+</div>
 
 ---
 
+<h3 align="center">// stats</h3>
+
 <div align="center">
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=alizaib1217&show_icons=true&theme=github_dark&hide_border=true&icon_color=6ee7b7&title_color=6ee7b7&bg_color=0e1116&rank_icon=github&include_all_commits=true" />
+  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=alizaib1217&layout=compact&theme=github_dark&hide_border=true&title_color=6ee7b7&bg_color=0e1116&langs_count=8" />
+</div>
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=alizaib1217&show_icons=true&theme=github_dark&hide_border=true&icon_color=6ee7b7&title_color=6ee7b7&bg_color=0e1116" />
-&nbsp;
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=alizaib1217&layout=compact&theme=github_dark&hide_border=true&title_color=6ee7b7&bg_color=0e1116" />
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=alizaib1217&theme=dark&hide_border=true&ring=6ee7b7&fire=6ee7b7&currStreakLabel=6ee7b7&background=0e1116&sideLabels=9aa4b2&dates=5d6773" />
+</div>
 
-<br/>
+---
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=alizaib1217&theme=dark&hide_border=true&ring=6ee7b7&fire=6ee7b7&currStreakLabel=6ee7b7&background=0e1116" />
+<h3 align="center">// trophies</h3>
 
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=alizaib1217&theme=darkhub&no-frame=true&no-bg=true&margin-w=6&column=7" />
+</div>
+
+---
+
+<h3 align="center">// activity</h3>
+
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=alizaib1217&theme=github-compact&hide_border=true&color=6ee7b7&line=6ee7b7&point=6ee7b7&bg_color=0e1116&area=true&area_color=6ee7b7" />
+</div>
+
+---
+
+<h3 align="center">// contribution snake</h3>
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alizaib1217/alizaib1217/output/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/alizaib1217/alizaib1217/output/github-contribution-grid-snake.svg" />
+    <img alt="contribution snake" src="https://raw.githubusercontent.com/alizaib1217/alizaib1217/output/github-contribution-grid-snake-dark.svg" />
+  </picture>
 </div>
 
 ---
@@ -75,6 +87,6 @@ const ali = {
 
 **[→ Full portfolio & experience](https://alizaib1217.github.io/alizaib1217/)**
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=6ee7b7&height=100&section=footer" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=6ee7b7,0e1116&height=120&section=footer" />
 
 </div>
