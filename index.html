@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ali Zaib — Full Stack Developer</title>
+  <meta name="description" content="Ali Zaib · Full Stack Developer building React and Node applications. Based in Leipzig, Germany." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      /* Default — dark */
+      --bg: #0e1116;
+      --bg-elev: #161b22;
+      --bg-soft: #1c232d;
+      --border: #2a323d;
+      --border-soft: #1f2630;
+      --fg: #e6e1d7;
+      --fg-muted: #9aa4b2;
+      --fg-faint: #5d6773;
+      --accent: #6ee7b7;
+      --accent-soft: rgba(110, 231, 183, 0.12);
+      --warn: #f5b06b;
+    }
+    [data-theme="light"] {
+      --bg: #f4f1ea;
+      --bg-elev: #ffffff;
+      --bg-soft: #ece8df;
+      --border: #d8d3c6;
+      --border-soft: #e4dfd3;
+      --fg: #1a1d20;
+      --fg-muted: #5b6470;
+      --fg-faint: #8a8f97;
+      --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
+
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 56px 48px 120px;
+    }
+    @media (max-width: 720px) {
+      .page { padding: 32px 22px 80px; }
+    }
+
+    /* ── Top bar ─────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg-faint);
+      margin-bottom: 96px;
+    }
+    .topbar .brand { color: var(--fg); display: flex; align-items: center; gap: 10px;}
+    .topbar .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .topbar nav { display: flex; gap: 28px; }
+    .topbar nav a { transition: color 0.2s; }
+    .topbar nav a:hover { color: var(--accent); }
+    @media (max-width: 720px) { .topbar nav { display: none; } }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero { margin-bottom: 120px; }
+    .hero .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 28px; text-transform: uppercase; }
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: clamp(48px, 8vw, 104px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0 0 28px;
+      max-width: 14ch;
+      text-wrap: balance;
+    }
+    .hero h1 .accent { color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+    .hero .lede {
+      font-size: clamp(18px, 1.8vw, 22px);
+      color: var(--fg-muted);
+      max-width: 56ch;
+      line-height: 1.6;
+      margin: 0 0 40px;
+    }
+    .hero .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg-muted);
+    }
+    .hero .meta-row .item { display: flex; align-items: center; gap: 8px; }
+    .hero .meta-row .item::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--fg-faint);
+      border-radius: 1px;
+      transform: rotate(45deg);
+    }
+    .hero .meta-row a:hover { color: var(--accent); }
+
+    /* ── Section ─────────────────────────────────────── */
+    section { margin-bottom: 112px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 48px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .section-head .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg-faint);
+    }
+    .section-head .num .slash { color: var(--accent); margin: 0 4px; }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .section-head .count {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--fg-faint);
+    }
+
+    /* ── About ────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      font-size: 17px;
+      color: var(--fg);
+      line-height: 1.7;
+    }
+    .about-grid p { margin: 0 0 18px; }
+    .about-grid .lang-table {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      align-items: center;
+    }
+    .about-grid .lang-table .lang { color: var(--fg); }
+    .about-grid .lang-table .level { color: var(--fg-muted); }
+    .about-grid .lang-table .bar {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .about-grid .lang-table .bar i {
+      display: inline-block;
+      width: 14px; height: 6px;
+      background: var(--border);
+      border-radius: 1px;
+    }
+    .about-grid .lang-table .bar i.on { background: var(--accent); }
+    .about-aside-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--fg-faint); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
+    @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ── Skills ───────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border-soft);
+      border: 1px solid var(--border-soft);
+    }
+    @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-cat {
+      background: var(--bg);
+      padding: 28px 28px 32px;
+    }
+    .skill-cat .name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .skill-cat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 6px; }
+    .skill-cat li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg);
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-elev);
+      transition: border 0.2s, color 0.2s, background 0.2s;
+    }
+    .skill-cat li:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Experience ───────────────────────────────── */
+    .role {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .role:last-child { border-bottom: none; }
+    .role .when {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg-muted);
+    }
+    .role .when .ongoing { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; font-size: 11px; margin-top: 8px;}
+    .role h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .role .org {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin-bottom: 18px;
+    }
+    .role .org .at { color: var(--accent); }
+    .role ul { margin: 0; padding: 0; list-style: none; }
+    .role ul li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--fg);
+    }
+    .role ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      top: 2px;
+    }
+    @media (max-width: 720px) {
+      .role { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ── Projects ──────────────────────────────────── */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border-soft);
+      border: 1px solid var(--border-soft);
+    }
+    @media (max-width: 720px) { .projects { grid-template-columns: 1fr; } }
+    .project {
+      background: var(--bg);
+      padding: 32px 30px;
+      transition: background 0.25s ease;
+      cursor: default;
+    }
+    .project:hover { background: var(--bg-elev); }
+    .project .top {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--fg-faint);
+      margin-bottom: 18px;
+    }
+    .project .top .idx { color: var(--accent); }
+    .project .top .tag { padding: 2px 8px; border: 1px solid var(--border); border-radius: 3px; }
+    .project h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .project .desc { color: var(--fg-muted); font-size: 14px; margin-bottom: 22px; min-height: 42px; }
+    .project .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project .stack span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--fg-muted);
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--bg-soft);
+    }
+
+    /* ── Education ────────────────────────────────── */
+    .edu-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .edu-row:last-child { border-bottom: none; }
+    .edu-row .when { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--fg-muted); }
+    .edu-row .when .ongoing { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; font-size: 11px; margin-top: 8px; }
+    .edu-row h3 { margin: 0 0 6px; font-size: 20px; font-weight: 600; }
+    .edu-row .school { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 14px; }
+    .edu-row .courses { font-size: 14px; color: var(--fg-muted); line-height: 1.65; }
+    .edu-row .courses .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--fg-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 8px; }
+    @media (max-width: 720px) { .edu-row { grid-template-columns: 1fr; gap: 16px; } }
+
+    /* ── Contact ──────────────────────────────────── */
+    .contact-block {
+      background: var(--bg-elev);
+      border: 1px solid var(--border-soft);
+      padding: 56px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 720px) {
+      .contact-block { padding: 36px 26px; grid-template-columns: 1fr; gap: 32px; }
+    }
+    .contact-block h3 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .contact-block h3 .accent { color: var(--accent); font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+    .contact-block p { color: var(--fg-muted); margin: 0; font-size: 16px; }
+    .contact-links { display: flex; flex-direction: column; gap: 4px; }
+    .contact-links a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-soft);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--fg);
+      transition: padding 0.25s, color 0.25s;
+    }
+    .contact-links a:hover { color: var(--accent); padding-left: 8px; }
+    .contact-links a .label { color: var(--fg-faint); text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+    .contact-links a:last-child { border-bottom: none; }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--fg-faint);
+      padding-top: 48px;
+      border-top: 1px solid var(--border-soft);
+    }
+    footer .heart { color: var(--accent); }
+    @media (max-width: 720px) { footer { flex-direction: column; gap: 16px; align-items: flex-start; } }
+
+    /* ── Terminal Mode (easter egg via tweak) ───── */
+    [data-mode="terminal"] {
+      --bg: #050a05;
+      --bg-elev: #081108;
+      --bg-soft: #0c180c;
+      --border: #1b4520;
+      --border-soft: #102a13;
+      --fg: #b6f5b6;
+      --fg-muted: #6dbf6d;
+      --fg-faint: #3a7a3a;
+      --accent: #5cff5c;
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    [data-mode="terminal"] * { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; }
+    [data-mode="terminal"] h1, [data-mode="terminal"] h2, [data-mode="terminal"] h3 { letter-spacing: 0 !important; }
+
+    /* avoid Fraunces in terminal */
+    [data-mode="terminal"] .accent { font-family: 'JetBrains Mono', monospace !important; }
+  </style>
+</head>
+<body>
+
+  <div class="page" id="page-root">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <a class="brand" href="#top"><span class="dot"></span><span>alizaib1217</span></a>
+      <nav>
+        <a href="#about">about</a>
+        <a href="#skills">skills</a>
+        <a href="#work">work</a>
+        <a href="#projects">projects</a>
+        <a href="#education">education</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+      <div class="label">// Full Stack Developer · Leipzig, DE</div>
+      <h1>Ali Zaib builds <span class="accent">thoughtful</span> web products.</h1>
+      <p class="lede">
+        Five years writing React, Node, and the bits in between — shipping responsive interfaces,
+        resilient APIs, and the occasional CI/CD pipeline. Currently completing a Masters in
+        Web Engineering at Chemnitz University of Technology.
+      </p>
+      <div class="meta-row">
+        <span class="item">Available for opportunities</span>
+        <a class="item" href="mailto:alizaib1217@gmail.com">alizaib1217@gmail.com</a>
+        <a class="item" href="https://github.com/alizaib1217" target="_blank" rel="noopener">github.com/alizaib1217</a>
+        <a class="item" href="https://linkedin.com/in/alizaib1217/" target="_blank" rel="noopener">linkedin/alizaib1217</a>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-head">
+        <span class="num">01<span class="slash">/</span>06</span>
+        <h2>About</h2>
+        <span class="count">~/about.md</span>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a software engineer who genuinely enjoys the full stack — moving fluidly between a React component and the API feeding it. My happy place is the small set of decisions that make an app feel <em class="serif">fast and considered</em>.</p>
+          <p>Recently shipped: a social platform for a TV channel, a handful of custom point-of-sale systems, and a CNN-powered diagnostic tool. Recently learning: distributed systems, German grammar, and the patience required for both.</p>
+        </div>
+        <div>
+          <div class="about-aside-title">// languages</div>
+          <div class="lang-table">
+            <span class="lang">English</span>
+            <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            <span class="lang">Urdu</span>
+            <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            <span class="lang">Pashto</span>
+            <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            <span class="lang">German</span>
+            <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+          </div>
+          <div class="about-aside-title" style="margin-top:36px;">// based in</div>
+          <p class="mono" style="font-size:13px;color:var(--fg-muted);margin:0;line-height:1.7;">
+            Mannheimer Str. 7<br/>
+            04209 Leipzig, Germany<br/>
+            CET / UTC+1
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-head">
+        <span class="num">02<span class="slash">/</span>06</span>
+        <h2>Skills</h2>
+        <span class="count">4 categories</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="name">// frontend</div>
+          <ul>
+            <li>React</li><li>React Native</li><li>TypeScript</li><li>JavaScript (ES6+)</li>
+            <li>HTML5</li><li>CSS / SCSS</li><li>jQuery</li><li>WebRTC</li>
+            <li>REST APIs</li><li>AJAX</li><li>PWA</li><li>UI/UX</li><li>SEO</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <div class="name">// backend</div>
+          <ul>
+            <li>Node.js</li><li>Python</li><li>PHP</li><li>C++</li><li>Bash</li>
+            <li>MongoDB</li><li>MySQL</li><li>SQL / NoSQL</li><li>GraphQL</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <div class="name">// devops &amp; cloud</div>
+          <ul>
+            <li>AWS</li><li>Docker</li><li>CI/CD</li><li>Unit Testing</li>
+            <li>Git</li><li>GitHub</li><li>GitLab</li><li>Bitbucket</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <div class="name">// workflow</div>
+          <ul>
+            <li>Agile</li><li>Scrum</li><li>Jira</li><li>Confluence</li>
+            <li>Slack</li><li>Asana</li><li>Trello</li><li>Miro</li>
+            <li>iOS &amp; Android</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="work">
+      <div class="section-head">
+        <span class="num">03<span class="slash">/</span>06</span>
+        <h2>Experience</h2>
+        <span class="count">2 roles</span>
+      </div>
+
+      <div class="role">
+        <div class="when">
+          Jan 2020 — Jul 2022
+        </div>
+        <div>
+          <h3>Full Stack Developer</h3>
+          <div class="org"><span class="at">@</span>LogicFab (Pvt.) Ltd · Pakistan</div>
+          <ul>
+            <li>Translated wireframes into highly responsive interfaces in React, delivering a comprehensive social platform for a TV channel.</li>
+            <li>Built robust RESTful APIs and asynchronous request handling — improving responsiveness, scalability, and overall UX.</li>
+            <li>Cut page load times by 40% and lifted conversions by 15% using React, TypeScript, Redux, and disciplined optimization.</li>
+            <li>Maintained complete application logs and shortened crash-resolution time using Sentry.</li>
+            <li>Introduced CI/CD pipelines that retired manual release steps.</li>
+            <li>Ran weekly standups to celebrate wins, surface blockers, and plan the next sprint.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="when">
+          Mar 2019 — Dec 2019
+        </div>
+        <div>
+          <h3>Web Application Developer</h3>
+          <div class="org"><span class="at">@</span>Last Wave Technology LLC · USA</div>
+          <ul>
+            <li>Turned designs and wireframes into production code with HTML, CSS, JavaScript, PHP, MySQL, and WordPress.</li>
+            <li>Shipped a suite of custom Point-of-Sale systems that doubled as lightweight management dashboards.</li>
+            <li>Partnered with designers, copywriters, CRO, video, and marketing to drive innovation and grow conversions 30%.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="section-head">
+        <span class="num">04<span class="slash">/</span>06</span>
+        <h2>Selected Projects</h2>
+        <span class="count">4 builds</span>
+      </div>
+      <div class="projects">
+        <div class="project">
+          <div class="top"><span class="idx">01</span><span class="tag">eCommerce</span></div>
+          <h3>BarterUnit</h3>
+          <p class="desc">A peer-to-peer barter marketplace with Stripe checkout for the cash-bridge transactions.</p>
+          <div class="stack"><span>React Native</span><span>Node.js</span><span>Stripe</span><span>AWS</span></div>
+        </div>
+        <div class="project">
+          <div class="top"><span class="idx">02</span><span class="tag">Lifestyle</span></div>
+          <h3>Ma Coiffeuse Afro</h3>
+          <p class="desc">A booking and discovery platform connecting clients with Afro-hair stylists — web and mobile.</p>
+          <div class="stack"><span>React</span><span>React Native</span><span>Node.js</span><span>MongoDB</span><span>Cloud</span></div>
+        </div>
+        <div class="project">
+          <div class="top"><span class="idx">03</span><span class="tag">Accessibility</span></div>
+          <h3>Able</h3>
+          <p class="desc">A mobile-first lifestyle app focused on accessibility-aware day-to-day planning.</p>
+          <div class="stack"><span>React Native</span><span>GraphQL</span><span>AWS</span><span>Miro</span><span>Jira</span></div>
+        </div>
+        <div class="project">
+          <div class="top"><span class="idx">04</span><span class="tag">ML · Final Year</span></div>
+          <h3>Lungs Disease Detection</h3>
+          <p class="desc">CNN-based mobile diagnostic that flags potential lung-disease patterns from chest X-rays.</p>
+          <div class="stack"><span>CNN</span><span>Python</span><span>React Native</span><span>REST APIs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-head">
+        <span class="num">05<span class="slash">/</span>06</span>
+        <h2>Education</h2>
+        <span class="count">2 degrees</span>
+      </div>
+
+      <div class="edu-row">
+        <div class="when">
+          Sep 2022 — Present
+          <br/><span class="ongoing">ongoing</span>
+        </div>
+        <div>
+          <h3>Masters in Web Engineering</h3>
+          <div class="school">Chemnitz University of Technology · Germany</div>
+          <div class="courses">
+            <span class="lbl">Coursework</span>
+            Cloud &amp; Web Application · Design of Distributed Systems · Software Service Engineering · Current Trends in Web Engineering · Data Protection
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-row">
+        <div class="when">Sep 2015 — Dec 2019</div>
+        <div>
+          <h3>Bachelor of Software Engineering</h3>
+          <div class="school">University of Management and Technology · Pakistan</div>
+          <div class="courses">
+            <span class="lbl">Coursework</span>
+            Object Oriented Programming · Data Structures · Algorithm Analysis · Networking · Data Science · Data Mining · NLP · Deep Learning
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-bottom: 48px;">
+      <div class="section-head">
+        <span class="num">06<span class="slash">/</span>06</span>
+        <h2>Contact</h2>
+        <span class="count">$ ./say-hi</span>
+      </div>
+      <div class="contact-block">
+        <div>
+          <h3>Let's build <span class="accent">something</span>.</h3>
+          <p>Open to full-time roles and freelance collaborations across Europe. I usually reply within a day.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:alizaib1217@gmail.com"><span class="label">Email</span><span>alizaib1217@gmail.com →</span></a>
+          <a href="tel:+4915737641165"><span class="label">Phone</span><span>+49 157 376 41165 →</span></a>
+          <a href="https://github.com/alizaib1217" target="_blank" rel="noopener"><span class="label">GitHub</span><span>@alizaib1217 →</span></a>
+          <a href="https://linkedin.com/in/alizaib1217/" target="_blank" rel="noopener"><span class="label">LinkedIn</span><span>in/alizaib1217 →</span></a>
+          <a href="https://alizaib.info" target="_blank" rel="noopener"><span class="label">Website</span><span>alizaib.info →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Ali Zaib · Leipzig, DE</span>
+      <span>Hand-built with <span class="heart">♥</span> · No frameworks were harmed.</span>
+    </footer>
+
+  </div>
+
+  <!-- Tweaks UI -->
+  <div id="tweaks-root"></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const { useEffect } = React;
+
+    const TWEAK_DEFAULTS = {
+      "theme": "dark",
+      "accent": "#6ee7b7",
+      "terminal": false
+    };
+
+    const ACCENTS = ["#6ee7b7", "#7dd3fc", "#f5b06b", "#fca5a5", "#c4b5fd"];
+
+    function PortfolioTweaks() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      useEffect(() => {
+        const root = document.documentElement;
+        root.setAttribute('data-theme', t.theme);
+        root.style.setProperty('--accent', t.accent);
+        root.style.setProperty('--accent-soft', t.accent + '1f');
+        if (t.terminal) {
+          document.body.setAttribute('data-mode', 'terminal');
+        } else {
+          document.body.removeAttribute('data-mode');
+        }
+      }, [t.theme, t.accent, t.terminal]);
+
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection title="Theme">
+            <TweakRadio
+              label="Mode"
+              value={t.theme}
+              options={[
+                { value: 'dark',  label: 'Dark' },
+                { value: 'light', label: 'Light' },
+              ]}
+              onChange={(v) => setTweak('theme', v)}
+            />
+          </TweakSection>
+          <TweakSection title="Accent">
+            <TweakColor
+              label="Color"
+              value={t.accent}
+              options={ACCENTS}
+              onChange={(v) => setTweak('accent', v)}
+            />
+          </TweakSection>
+          <TweakSection title="Easter egg">
+            <TweakToggle
+              label="Terminal mode"
+              value={t.terminal}
+              onChange={(v) => setTweak('terminal', v)}
+            />
+          </TweakSection>
+        </TweaksPanel>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('tweaks-root'));
+    root.render(<PortfolioTweaks />);
+  </script>
+</body>
+</html>
