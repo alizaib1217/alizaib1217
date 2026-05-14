@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0e1116,161b22,6ee7b7&height=240&section=header&text=Ali%20Zaib&fontSize=86&fontColor=6ee7b7&animation=fadeIn&fontAlignY=40&desc=Full%20Stack%20Developer%20·%20Leipzig,%20Germany%20%F0%9F%87%A9%F0%9F%87%AA&descAlignY=58&descSize=20&descColor=9aa4b2" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0e1116,161b22,6ee7b7&height=240&section=header&text=Ali%20Zaib&fontSize=86&fontColor=6ee7b7&animation=fadeIn&fontAlignY=40&desc=Full%20Stack%20Developer%20·%20Karlsruhe,%20Germany%20%F0%9F%87%A9%F0%9F%87%AA&descAlignY=58&descSize=20&descColor=9aa4b2" />
 
 <a href="https://git.io/typing-svg">
   <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=17&pause=1200&color=6EE7B7&center=true&vCenter=true&width=540&lines=Full+Stack+Developer+%F0%9F%9A%80;React+%26+Node.js+Engineer;5%2B+years+shipping+web+products;MSc+Web+Engineering+%C2%B7+Chemnitz+Uni;Building+thoughtful+digital+experiences;Open+to+opportunities+%F0%9F%8C%8D+Europe" alt="Typing SVG" />
@@ -24,7 +24,7 @@
 
 ```ts
 const ali: Developer = {
-  location  : "Leipzig, Germany 🇩🇪",
+  location  : "Karlsruhe, Germany 🇩🇪",
   education : "MSc Web Engineering · Chemnitz University of Technology",
   role      : "Full Stack Developer · Open to opportunities across Europe",
   experience: "5+ years shipping React, Node.js, and everything in between",
